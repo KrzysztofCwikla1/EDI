@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wspinder</title>
+</head>
+<div id="ProjektAut">
+    <h1>Wspinder</h1>
+    <h2>Barbara Markiewicz-Marko, Wiktoria Filipek, Jakub Solarz, Krzysztof Ćwikła</h2>
+</div>
+<body>
+    <div id="Dane">
+    <h2>Find a perfect partner!</h2>
+
+    <label for="sexuality">Sexuality:</label>
+    <select id="sexuality">
+        <option value="">All</option>
+        <option value="heterosexual">Heterosexual</option>
+        <option value="homosexual">Homosexual</option>
+        <option value="pansexual">Pansexual</option>
+        <option value="bisexual">Bisexual</option>
+        <option value="asexual">Asexual</option>
+    </select>
+    <label for="gender">Gender:</label>
+    <select id="gender">
+        <option value="">All</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+
+    <label for="climbingType">Favority climbing type:</label>
+    <select id="climbingType">
+        <option value="">All</option>
+        <option value="bouldering">Bouldering</option>
+        <option value="sport climbing">Sport Climbing</option>
+        <option value="trad climbing">Trad Climbing</option>
+        <option value="ice climbing">Ice Climbing</option>
+        <option value="mountaineering">Mountaineering</option>
+    </select>
+    <label for="residence">Place of residence:</label>
+    <select id="residence">
+        <option value="">All</option>
+        <option value="Gdynia">Gdynia</option>
+        <option value="Szczecin">Szczecin</option>
+        <option value="Gdansk">Gdańsk</option>
+        <option value="Katowice">Katowice</option>
+        <option value="Wroclaw">Wrocław</option>
+        <option value="Krakow">Kraków</option>
+        <option value="Poznan">Poznań</option>
+        <option value="Lodz">Łódź</option>
+        <option value="Bialystok">Białystok</option>
+        <option value="Warsaw">Warszawa</option>
+    </select>
+    <label for="minAge">Minimum Age:</label>
+    <input type="number" id="minAge" placeholder="Min Age">
+    <label for="maxAge">Maximum Age:</label>
+    <input type="number" id="maxAge" placeholder="Max Age">
+    
+    <button onclick="filterData()">Start the search</button>
+
+    <div id="partnerlist">
+
+    <script src="fetch.js">
+    </script>
+    </div>
+    <div id="Tabelki">
+    </div>
+</body>

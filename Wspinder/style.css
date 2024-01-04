@@ -1,0 +1,81 @@
+
+body {
+    background: #ffffff url(https://media1.popsugar-assets.com/files/thumbor/UXt-UFbVBar3f_FKvZnEKLby4uc/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2021/01/14/843/n/1922507/10fa7acca6b544e5_simon-berger-twukN12EN7c-unsplash/i/Colorful-Mountains-Zoom-Background.jpg) center center/cover no-repeat;
+}
+
+h1 {
+  color: rgb(228, 27, 84);
+  text-align: center;
+  font-weight: bold;
+  font-family: Copperplate, Papyrus, fantasy;
+}
+h2 {
+    color: rgb(149, 11, 50);
+    text-align: left;
+  }
+h3 {
+    color: rgb(174, 10, 10);
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+}
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+header {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+  }   
+
+.topnav {
+    overflow: hidden;
+    background-color: hsl(348, 86%, 72%);
+  }
+  
+  /* Navbar links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #77200a;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Links - change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+a:link, a:visited {
+    background-color: hsl(348, 86%, 72%);
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+a:hover, a:active {
+    background-color: hsl(348, 86%, 72%);
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #7ea2ac;
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+}
+tr:hover {background-color: coral;}
+
+th {
+    background-color: #f2f2f2;
+}

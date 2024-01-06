@@ -111,6 +111,7 @@
             ));
             displayData(filteredData);
             displayChart(filteredData);
+            displayppl(filteredData);
         }
 
         function displayData(data) {
@@ -180,6 +181,54 @@
                 climbingTypeCounts[climbingType] = (climbingTypeCounts[climbingType] || 0) + 1;
             });
             return climbingTypeCounts;
+        }
+        function displayppl(data) {
+            const HowManyPplInCity = countppl(data);
+            const canvas = document.getElementById('whereppl');
+            const ctx = canvas.getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Object.keys(HowManyPplInCity),
+                    datasets: [
+                    {
+                        label: 'how many people in city',
+                        data: Object.values(HowManyPplInCity),
+                    }
+                ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        x:{
+                            grid:{
+                                display: false
+                            }
+                        }
+                    },
+                    elements:{
+                        line:{
+                            backgroundColor: 'rgb(255,0,0)',
+                            borderColor: 'rgb(255,0,0)',
+                            borderWidth: 1,
+                        }
+                    }
+                }
+            });
+        }
+        
+        function countppl(data) {
+            const HowManyPplInCity = {};
+            data.forEach(item => {
+                const PlaceOfResidence = item['place of residence'];
+                    HowManyPplInCity[PlaceOfResidence] = (HowManyPplInCity[PlaceOfResidence] || 0) + 1;
+            });
+            return HowManyPplInCity;
         }
     </script>
 </body>

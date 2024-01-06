@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="style.css">
-<title>Wspinder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Wspinder</title>
 </head>
-<div id="ProjektAut">
-    <h1>WSPINDER</h1>
-    <h2>Barbara Markiewicz-Marko, Wiktoria Filipek, Jakub Solarz, Krzysztof Ćwikła</h2>
-</div>
 <body>
-
-    <div class="topnav">
-        <a href="https://27crags.com/countries/poland" target="_blank">Best places to climb in Poland</a>
-        <a href="https://www.tripsavvy.com/top-rock-climbing-destinations-in-europe-5198534" target="_blank">Best places to climb in Europe</a>
-        <a href="https://www.tripsavvy.com/best-places-in-the-us-to-go-rock-climbing-5195077">Best places to climb in US</a>
+    <div id="ProjektAut">
+        <h1>WSPINDER</h1>
+        <h2>Barbara Markiewicz-Marko, Wiktoria Filipek, Jakub Solarz, Krzysztof Ćwikła</h2>
+        <ul>
+            <li><a href="file:///Users/mac/Downloads/wspinder2.html#home">Home</a></li>
+            <li><a href="https://www.rei.com/learn/expert-advice/getting-started-rock-climbing.html">Basics</a></li>
+            <li class="dropdown">
+              <a href="javascript:void(0)" class="dropbtn">Climbing spots</a>
+              <div class="dropdown-content">
+                <a href="https://27crags.com/countries/poland" target="_blank">Best places to climb in Poland</a>
+                <a href="https://www.tripsavvy.com/top-rock-climbing-destinations-in-europe-5198534" target="_blank">Best places to climb in Europe</a>
+                <a href="https://www.tripsavvy.com/best-places-in-the-us-to-go-rock-climbing-5195077">Best places to climb in US</a>
+              </div>
+            </li>
+          </ul>
     </div>
+
     <div id="subtitle">
         <h3>Find a perfect partner!</h3>
     </div>
 
     <div id="Dane">
-        
-
         <label for="sexuality">Sexuality:</label>
         <select id="sexuality">
             <option value="">All</option>
@@ -37,8 +43,7 @@
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
-
-        <label for="climbingType">Favority climbing type:</label>
+        <label for="climbingType">Favorite climbing type:</label>
         <select id="climbingType">
             <option value="">All</option>
             <option value="bouldering">Bouldering</option>
@@ -65,93 +70,117 @@
         <input type="number" id="minAge" placeholder="Min Age">
         <label for="maxAge">Maximum Age:</label>
         <input type="number" id="maxAge" placeholder="Max Age">
-
         <button onclick="filterData()">Start the search</button>
-
     </div>
 
-    <div id="partnerlist">
+    <div id="partnerlist"></div>
 
-        <script>
-
-                async function fetchData() {
-                    try {
-                        const api = `https://my.api.mockaroo.com/wspinder.json/?key=bd2463b0`;
-
-                        const odp = await fetch(api);
-                        const data = await odp.json();
-
-                        return data;
-                    } catch (error) {
-                        console.error('Error:', error);
-                        return [];
-                    }
-                }
-
-                    async function filterData() {
-                const data = await fetchData();
-
-                const sexualityFilter = document.getElementById('sexuality').value;
-                const genderFilter = document.getElementById('gender').value;
-                const climbingTypeFilter = document.getElementById('climbingType').value;
-                const residenceFilter = document.getElementById('residence').value;
-                const minAgeFilter = parseInt(document.getElementById('minAge').value) || 0;
-                const maxAgeFilter = parseInt(document.getElementById('maxAge').value) || Number.MAX_SAFE_INTEGER;
-
-                const filteredData = data.filter(item => (
-                    (sexualityFilter === '' || item['sexual orientation'] === sexualityFilter) &&
-                    (genderFilter === '' || item['gender'] === genderFilter) &&
-                    (climbingTypeFilter === '' || item['favorite type of climbing'] === climbingTypeFilter) &&
-                    (residenceFilter === '' || item['place of residence'] === residenceFilter) &&
-                    (item.age >= minAgeFilter && item.age <= maxAgeFilter)
-                ));
-
-                    displayData(filteredData);
-                }
-
-                function displayData(data) {
-                const partnerlist = document.getElementById('partnerlist');
-                partnerlist.innerHTML = '';
-
-                if (data.length === 0) {
-                    partnerlist.textContent = 'No users fitting your criteria.';
-                } else {
-                    const table = document.createElement('table');
-                    table.classList.add('record-table');
-
-                    const header = document.createElement('tr');
-                    for (const key in data[0]) {
-                        const th = document.createElement('th');
-                        th.textContent = key;
-                        header.appendChild(th);
-                    }
-                    table.appendChild(header);
-
-                    data.forEach(item => {
-                        const row = document.createElement('tr');
-                        for (const key in item) {
-                            const cell = document.createElement('td');
-                            cell.textContent = item[key];
-                            row.appendChild(cell);
-                        }
-                        table.appendChild(row);
-                    });
-
-                    partnerlist.appendChild(table);
-                }
-
-
-            }
-            
-        </script>      
-
-    </div>
+    <canvas id="climbingChart" width="400" height="200"></canvas>
 
     <div class="match">
-        
         <h1>find your match and do not catch a scratch!</h1>
+    </div>
 
-    </div>      
+    <script>
+        async function fetchData() {
+            try {
+                const api = `https://my.api.mockaroo.com/wspinder.json/?key=bd2463b0`;
+                const odp = await fetch(api);
+                const data = await odp.json();
+                return data;
+            } catch (error) {
+                console.error('Error:', error);
+                return [];
+            }
+        }
 
-</style>
+        async function filterData() {
+            const data = await fetchData();
+            const sexualityFilter = document.getElementById('sexuality').value;
+            const genderFilter = document.getElementById('gender').value;
+            const climbingTypeFilter = document.getElementById('climbingType').value;
+            const residenceFilter = document.getElementById('residence').value;
+            const minAgeFilter = parseInt(document.getElementById('minAge').value) || 0;
+            const maxAgeFilter = parseInt(document.getElementById('maxAge').value) || Number.MAX_SAFE_INTEGER;
+            const filteredData = data.filter(item => (
+                (sexualityFilter === '' || item['sexual orientation'] === sexualityFilter) &&
+                (genderFilter === '' || item['gender'] === genderFilter) &&
+                (climbingTypeFilter === '' || item['favorite type of climbing'] === climbingTypeFilter) &&
+                (residenceFilter === '' || item['place of residence'] === residenceFilter) &&
+                (item.age >= minAgeFilter && item.age <= maxAgeFilter)
+            ));
+            displayData(filteredData);
+            displayChart(filteredData);
+        }
+
+        function displayData(data) {
+            const partnerlist = document.getElementById('partnerlist');
+            partnerlist.innerHTML = '';
+            if (data.length === 0) {
+                partnerlist.textContent = 'No users fitting your criteria.';
+            } else {
+                const table = document.createElement('table');
+                table.classList.add('record-table');
+                const header = document.createElement('tr');
+                for (const key in data[0]) {
+                    const th = document.createElement('th');
+                    th.textContent = key;
+                    header.appendChild(th);
+                }
+                table.appendChild(header);
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    for (const key in item) {
+                        const cell = document.createElement('td');
+                        cell.textContent = item[key];
+                        row.appendChild(cell);
+                    }
+                    table.appendChild(row);
+                });
+                partnerlist.appendChild(table);
+            }
+        }
+
+        function displayChart(data) {
+            const climbingTypeCounts = countClimbingTypes(data);
+            const canvas = document.getElementById('climbingChart');
+            const ctx = canvas.getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(climbingTypeCounts),
+                    datasets: [{
+                        label: 'Climbing Type Count',
+                        data: Object.values(climbingTypeCounts),
+                        backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                    ],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function countClimbingTypes(data) {
+            const climbingTypeCounts = {};
+            data.forEach(item => {
+                const climbingType = item['favorite type of climbing'];
+                climbingTypeCounts[climbingType] = (climbingTypeCounts[climbingType] || 0) + 1;
+            });
+            return climbingTypeCounts;
+        }
+    </script>
 </body>
+</html>

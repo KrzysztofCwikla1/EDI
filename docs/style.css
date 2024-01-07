@@ -1,7 +1,7 @@
 
 body {
-    background: #ffffff url(https://media1.popsugar-assets.com/files/thumbor/UXt-UFbVBar3f_FKvZnEKLby4uc/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2021/01/14/843/n/1922507/10fa7acca6b544e5_simon-berger-twukN12EN7c-unsplash/i/Colorful-Mountains-Zoom-Background.jpg) center no-repeat;
-    min-height: 100vh;
+    background: #ffffff url(https://media1.popsugar-assets.com/files/thumbor/UXt-UFbVBar3f_FKvZnEKLby4uc/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2021/01/14/843/n/1922507/10fa7acca6b544e5_simon-berger-twukN12EN7c-unsplash/i/Colorful-Mountains-Zoom-Background.jpg) center center/cover no-repeat;
+    background-attachment: fixed;
     background-size: cover;
 }
 

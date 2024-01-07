@@ -76,7 +76,8 @@
     <div id="partnerlist"></div>
 
     <canvas id="climbingChart" width="400" height="200"></canvas>
-
+    <canvas id="whereppl" width="200" height="100"></canvas>
+    
     <div class="match">
         <h1>find your match and do not catch a scratch!</h1>
     </div>
@@ -182,6 +183,7 @@
             });
             return climbingTypeCounts;
         }
+        
         function displayppl(data) {
             const HowManyPplInCity = countppl(data);
             const canvas = document.getElementById('whereppl');

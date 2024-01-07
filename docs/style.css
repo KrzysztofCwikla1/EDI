@@ -58,6 +58,10 @@ th, td {
 }
 tr:hover {background-color: coral;}
 
+tr{
+  background-color: #c7c5c5;
+}
+
 th {
     background-color: #f2f2f2;
 }

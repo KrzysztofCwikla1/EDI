@@ -56,11 +56,12 @@ th, td {
     text-align: left;
     font-weight: bold;
 }
-tr:hover {background-color: coral;}
-
 tr{
   background-color: #c7c5c5;
 }
+tr:hover {background-color: coral;}
+
+
 
 th {
     background-color: #f2f2f2;
